@@ -1,20 +1,19 @@
-import {Card, CardContent, CardHeader, MenuItem, TextField, Typography} from "@mui/material";
-import {useRef} from "react";
+import {Card, CardContent, CardHeader, CircularProgress, MenuItem, TextField} from "@mui/material";
 
-export const BirthDateCard = ({title, id, data, label, initialValue, help, reference}) => {
-    const optionRef = useRef(null);
-    console.log(data)
+export const BirthDateCard = ({title, data, label, loadingStatus, reference}) => {
     return (
         <div className="birthDateCard">
             <Card sx={{minWidth: "200px"}}>
                 <CardHeader title={title}/>
                 <CardContent>
-                    <TextField
+                    {loadingStatus ? <CircularProgress/> : (<TextField
                         sx={{minWidth: "200px"}}
                         select
                         variant="outlined"
                         label={label}
-                        defaultValue={initialValue}>
+                        defaultValue={data[0]}
+                        inputRef={reference}
+                    >
 
                         {data.map((item, index) => (
                             <MenuItem key={index} value={item}>
@@ -22,7 +21,8 @@ export const BirthDateCard = ({title, id, data, label, initialValue, help, refer
                             </MenuItem>
                         ))}
 
-                    </TextField>
+                    </TextField>)}
+
                 </CardContent>
             </Card>
 

@@ -1,9 +1,18 @@
-import {Box, Button, Container, Paper, Typography} from "@mui/material";
-import linedPaper from "../assets/notebook_lined_paper.webp"
-import {Link} from "react-router";
+import {Box, Button, Paper, Typography} from "@mui/material";
+import {Link, Navigate, useLocation} from "react-router";
 import {Footer} from "./Footer.jsx";
 
-export const Result = ({monthName="setembro", year, etapa, grade={gradeName:"1°ano", etapa:"ETAPA 14"}}) => {
+
+export const Result = () => {
+    const location = useLocation();
+
+    if(!location.state?.monthName){
+        return <Navigate to={"/"}/>
+    }
+
+    const {etapa, gradeName, monthName, year} = location.state;
+
+
     return (
         <Box
             sx={{
@@ -34,22 +43,30 @@ export const Result = ({monthName="setembro", year, etapa, grade={gradeName:"1°
                         padding: "2rem",
                         margin: "1rem",
                     }}>
-                    <Typography variant={"body1"} component={"p"}>
+                    <Typography variant="body1" component="p">
                         Quem nasceu em <span style={{textDecoration: "underline"}}>{monthName} de {year}</span> tem idade para o:
                     </Typography>
-                    <Box
+
+                    {etapa ? (<Box
                         sx={{
                             border: "0.25rem black dashed",
                             padding: "1rem",
                             marginY: "1rem",
                         }}
-                    >
-                        <Typography variant={"body1"} component={"p"}>
-                            {grade.gradeName} - {grade.etapa}
-                        </Typography>
-                    </Box>
+                    ><Typography variant="body1" component="p">
+                        {gradeName} - {etapa}
+                    </Typography> </Box>) : (<Box
+                        sx={{
+                            border: "0.25rem red dashed",
+                            padding: "1rem",
+                            marginY: "1rem",
+                        }}
+                    ><Typography variant="body1" component="p">
+                        Fora da idade escolar padrão.
+                    </Typography></Box>)}
+
                     <Link to="/">
-                        <Button variant="contained" size={"large"}>Voltar</Button>
+                        <Button variant="contained" size="large">Voltar</Button>
                     </Link>
                 </Paper>
 

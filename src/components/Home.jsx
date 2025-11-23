@@ -1,14 +1,82 @@
-import {Box, Button, Container, FormControl, Grid, Paper, Stack, Typography} from "@mui/material";
+import {Box, Button, CircularProgress, FormControl, Paper, Stack, Typography} from "@mui/material";
 import {BirthDateCard} from "./BirthDateCard.jsx";
 import {Footer} from "./Footer.jsx";
 import {useNavigate} from "react-router";
 
 import {ETAPAS, GRADES_BY_BIRTHDATE} from "../data/nascidos-2026.js";
+import {useEffect, useRef, useState} from "react";
 
 export const Home = () => {
     const navigate = useNavigate();
-    function handleSubmit() {
-        navigate("/resultado");
+
+    function handleCalculation() {
+        setCalculating(true);
+        const m = monthDict[month.current.value]
+        const result = calculateGrade(m, year.current.value)
+        if (result.gradeName) {
+            navigate("/resultado",
+                {
+                    state:
+                        {
+                            etapa: result.etapa,
+                            gradeName: result.gradeName,
+                            monthName: month.current.value,
+                            year: year.current.value,
+                        }
+                });
+        } else {
+            navigate("/resultado",
+                {
+                    state:
+                        {
+                            etapa: null,
+                            gradeName: null,
+                            monthName: month.current.value,
+                            year: year.current.value,
+                        }
+                });
+        }
+        setCalculating(false);
+    }
+
+    const [monthNames, setMonthNames] = useState([]);
+    const [years, setYears] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [calculating, setCalculating] = useState(false);
+    const month = useRef("");
+    let year = useRef("");
+
+    const monthDict ={
+        "janeiro": 1,
+        "fevereiro": 2,
+        "março": 3,
+        "abril": 4,
+        "maio": 5,
+        "junho": 6,
+        "julho": 7,
+        "agosto": 8,
+        "setembro": 9,
+        "outubro": 10,
+        "novembro": 11,
+        "dezembro": 12
+    };
+
+    useEffect(() => {
+        setMonthNames(Object.keys(monthDict));
+        setYears(Object.keys(GRADES_BY_BIRTHDATE).sort((a, b) => b - a));
+        setLoading(false);
+    }, []);
+
+    const calculateGrade = (month, year) => {
+        const monthRange = month <=3 ? "JAN-MAR" : "ABR-DEZ";
+
+        const gradeName = (GRADES_BY_BIRTHDATE[year] && GRADES_BY_BIRTHDATE[year][monthRange])
+            ? GRADES_BY_BIRTHDATE[year][monthRange]
+            : null;
+
+        const etapa = ETAPAS[gradeName] || "ETAPA 14";
+
+        return {gradeName, etapa};
     }
 
     return (
@@ -45,15 +113,17 @@ export const Home = () => {
                                 >
                                     <BirthDateCard
                                         title={"Mês"}
-                                        data={[1, 2, 4, 5]}
-                                        initialValue={4}
+                                        data={monthNames}
                                         label={"Escolha o mês de nascimento"}
+                                        reference={month}
+                                        loadingStatus={loading}
                                     />
                                     <BirthDateCard
                                         title={"Ano"}
-                                        data={[1, 2, 4, 5]}
-                                        initialValue={4}
+                                        data={years}
                                         label={"Escolha o ano de nascimento"}
+                                        reference={year}
+                                        loadingStatus={loading}
                                     />
                                 </Stack>
                             </FormControl>
@@ -61,10 +131,12 @@ export const Home = () => {
                                 <Button
                                     variant="contained"
                                     size="large"
-                                    onClick={handleSubmit}
+                                    onClick={handleCalculation}
+                                    disabled={calculating}
+                                    startIcon={calculating ? <CircularProgress size={20}/> : null}
                                     sx={{margin: "0.5rem"}}
                                 >
-                                    Calcular
+                                    {calculating ? "Calculando" : "Calcular"}
                                 </Button>
                             </Box>
 

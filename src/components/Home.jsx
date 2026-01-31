@@ -104,7 +104,7 @@ export const Home = () => {
                         <Paper sx={{padding: "1rem"}}>
 
                             <Typography component="p" variant="body1" margin={"1rem"}>
-                                Selecione as opções abaixo para descobrir a série correta!
+                                Escolha um mês e ano de nascimento para descobrir a série correta!
                             </Typography>
                             <FormControl>
                                 <Stack spacing={2}

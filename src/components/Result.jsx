@@ -44,7 +44,7 @@ export const Result = () => {
                         margin: "1rem",
                     }}>
                     <Typography variant="body1" component="p">
-                        Quem nasceu em <span style={{textDecoration: "underline"}}>{monthName} de {year}</span> tem idade para o:
+                        Quem nasceu em <span style={{textDecoration: "underline"}}>{monthName} de {year}</span> tem idade para estar no:
                     </Typography>
 
                     {etapa ? (<Box

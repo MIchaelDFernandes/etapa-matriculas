@@ -1,4 +1,4 @@
-import {Box, Container, Typography} from "@mui/material";
+import {Box, Typography} from "@mui/material";
 
 export const Footer = () => {
   return (
@@ -12,10 +12,10 @@ export const Footer = () => {
           height:"100%",
       }}>
           <Typography
-              variant={"body2"}
+              variant="body2"
               component="p"
               sx={{color: "white"}}
-          >2026 Michael D. Fernandes</Typography>
+          >&copy;2026 Michael D. Fernandes</Typography>
       </Box>
   )
 }

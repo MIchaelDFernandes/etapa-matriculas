@@ -1,16 +1,42 @@
-# React + Vite
+# Etapa de Matrículas 2026
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto é uma ferramenta prática para identificar a série ou etapa escolar correta para estudantes no ano letivo de 2026, baseando-se na sua data de nascimento.
 
-Currently, two official plugins are available:
+## 🚀 Tecnologias Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+O projeto foi construído utilizando as seguintes tecnologias:
 
-## React Compiler
+- **React 19**: Biblioteca para construção da interface.
+- **Vite**: Ferramenta de build rápida para o desenvolvimento moderno.
+- **MUI (Material UI)**: Biblioteca de componentes de interface para um design consistente e responsivo.
+- **React Router 7**: Gerenciamento de rotas e navegação da aplicação.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Como Executar o Projeto
 
-## Expanding the ESLint configuration
+Certifique-se de ter o [Node.js](https://nodejs.org/) instalado em sua máquina.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Instale as dependências do projeto:
+   ```bash
+   npm install
+   ```
+
+2. Inicie o ambiente de desenvolvimento:
+   ```bash
+   npm run dev
+   ```
+
+3. Acesse o endereço indicado no terminal (geralmente `http://localhost:5173`) para visualizar a aplicação.
+
+## 📁 Estrutura de Scripts
+
+- `npm run dev`: Inicia o servidor de desenvolvimento com Hot Module Replacement (HMR).
+- `npm run build`: Gera os arquivos otimizados para produção na pasta `dist`.
+- `npm run lint`: Analisa o código em busca de erros e problemas de padronização.
+- `npm run preview`: Executa um servidor local para testar a versão de produção gerada.
+
+## 📝 Detalhes da Aplicação
+
+A aplicação calcula a etapa escolar baseando-se em regras de corte de data de nascimento (geralmente considerando o limite de 31 de março para mudança de série no Brasil, conforme configurado nos dados do sistema).
+
+---
+Projeto desenvolvido para facilitar o processo de consulta de matrículas.

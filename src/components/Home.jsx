@@ -1,4 +1,4 @@
-import {Box, Button, CircularProgress, FormControl, Paper, Stack, Typography} from "@mui/material";
+import {Box, Button, CircularProgress, FormControl, Stack, Typography} from "@mui/material";
 import {BirthDateCard} from "./BirthDateCard.jsx";
 import {Footer} from "./Footer.jsx";
 import {useNavigate} from "react-router";

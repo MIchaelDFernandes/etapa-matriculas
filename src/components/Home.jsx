@@ -101,9 +101,8 @@ export const Home = () => {
                         >
                             Matrículas 2026
                         </Typography>
-                        <Paper sx={{padding: "1rem"}}>
 
-                            <Typography component="p" variant="body1" margin={"1rem"}>
+                            <Typography component="p" variant="subtitle1" margin={"1rem"} color={"white"}>
                                 Escolha um mês e ano de nascimento para descobrir a série correta!
                             </Typography>
                             <FormControl>
@@ -140,7 +139,7 @@ export const Home = () => {
                                 </Button>
                             </Box>
 
-                        </Paper>
+
 
                     </Stack>
                 </Box>
